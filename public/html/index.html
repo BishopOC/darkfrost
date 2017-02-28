@@ -5,9 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Dark Frost</title>
+  <script src="https://unpkg.com/vue"></script>
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+
+<div id="currently">
+  <header>
+    <h4>{{ location }}</h4>
+  </header>
+  <main>
+    <div>
+      <h1>{{ apparentTemperature }}</h1>
+    </div>
+    <div>
+      <h2>{{ summary }}</h2>
+      <div><img src="https://placehold.it/200x200" alt=""></div>
+    </div>
+    <div>
+      <h3>{{ precipProbability}}</h3>
+      <h3>{{ humidity }}</h3>
+    </div>
+  </main>
+  <footer>
+    <h4>{{ time }}</h4>
+  </footer>
+</div>
+
+<div id="app">
+  <p>{{ message }}</p>
+</div>
 
   <script src='js/app.js'></script>
 </body>
