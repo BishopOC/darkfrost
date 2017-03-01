@@ -2,6 +2,7 @@ var express = require('express');
 var server =  express();
 var port = process.env.PORT || 8080;
 var apiKey = require('./secrets').darkskyAPIKey;
+var googleKey = require('./secrets').googleAPIKey;
 var axios = require('axios');
 
 server.use(express.static(__dirname + '/public'));
@@ -20,6 +21,18 @@ server.get('/weather/:lat,:lon', function(request,response){
        .catch(function(err){
          response.send(err);
        });
+     });
+
+     server.get('/location/:address', function(request, response){
+       var address = request.params.address;
+       var url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${googleKey}`;
+       axios.get(url)
+            .then(function(results){
+              response.send(results.data);
+            })
+            .catch(function(err){
+              response.send(err);
+            });
      });
 
 server.listen(port, function(){
