@@ -13,28 +13,31 @@
 
 <div id="currently">
   <header>
-    <h4>{{ location }}</h4>
+    <h3>Temperature</h3>
+    <h1>{{ apparentTemperature }} F</h1>
   </header>
   <main>
     <div>
-      <h1>{{ apparentTemperature }}</h1>
     </div>
-    <div>
-      <h2>{{ summary }}</h2>
+    <div id='center'>
+      <h1>Current Weather</h1>
+      <h2>{{ location }}</h2>
       <div><img :src="iconUrl(icon)" alt=""></div>
+      <h2>{{ summary }}</h2>
+      <h3>{{ time }}</h3>
     </div>
     <div>
-      <h3>{{ precipProbability}}</h3>
-      <h3>{{ humidity }}</h3>
     </div>
   </main>
   <footer>
-    <h4>{{ time }}</h4>
+    <h3>Chance of Rain: {{ precipProbability}}</h3>
+    <h3>% Humidity: {{ humidity }}</h3>
   </footer>
 </div>
 
 <div id="daily">
   <main>
+    <div id="dailyForecast"><h1>Forecast</h1></div>
     <div><img :src="iconUrl(icon)" alt=""></div>
   </main>
   <footer>
