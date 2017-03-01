@@ -14,7 +14,12 @@ var currentlyWidget = new Vue({
     apparentTemperature: 67.4,
     precipProbability : 0.30,
     humidity: 0.61,
-    location: [],
+    location: 'Gainesville, Fl',
+  },
+  methods: {
+    iconUrl: function(iconString){
+      return `/images/${iconString}.png`;
+    }
   },
   created: function(){
     axios.get('/weather/29.1,-81.4')
@@ -25,8 +30,8 @@ var currentlyWidget = new Vue({
            currentlyWidget.apparentTemperature = response.data.currently.apparentTemperature;
            currentlyWidget.precipProbability = response.data.currently.precipProbability;
            currentlyWidget.humidity = response.data.currently.humidity;
-           currentlyWidget.location = response.data.latitude && response.data.longitude;
            console.log(response.data);
+           console.log(currentlyWidget.location);
          })
          .catch(function(err){
            console.log(err);
