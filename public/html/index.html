@@ -21,6 +21,9 @@
     </div>
     <div id='center'>
       <h1>Current Weather</h1>
+      <input type="text" v-model='latitude' placeholder="Latitude:">
+      <input type="text" v-model='longitude' placeholder="Longitude:">
+      <button v-on:click='updateWeather'>Update Weather</button>
       <h2>{{ location }}</h2>
       <div><img :src="iconUrl(icon)" alt=""></div>
       <h2>{{ summary }}</h2>

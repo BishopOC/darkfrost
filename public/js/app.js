@@ -8,13 +8,35 @@ var currentlyWidget = new Vue({
     precipProbability : 0,
     humidity: 0,
     location:' ',
+    latitude: 29,
+    longitude: 82,
   },
   methods: {
     iconUrl: function(iconString){
       return `/images/${iconString}.png`;
     },
-
+    updateWeather: function(){
+      var url = `/weather/${this.latitude},${this.longitude}`;
+        axios.get(url)
+             .then(function(response){
+               currentlyWidget.time = response.data.currently.time;
+               currentlyWidget.summary = response.data.currently.summary;
+               currentlyWidget.icon = response.data.currently.icon;
+               currentlyWidget.apparentTemperature = response.data.currently.apparentTemperature;
+               currentlyWidget.precipProbability = response.data.currently.precipProbability;
+               currentlyWidget.humidity = response.data.currently.humidity;
+               console.log(response.data);
+             })
+             .catch(function(err){
+               console.log(err);
+             });
+        axios.get(`/location/${this.latitude},${this.longitude}`)
+             .then(function(response){
+               currentlyWidget.location = response.data.results[2].formatted_address;
+             });
+    }
   },
+
   created: function(){
     axios.get('/weather/29.67,-82.36')
          .then(function(response){
