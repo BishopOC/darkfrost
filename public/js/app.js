@@ -30,7 +30,7 @@ var currentlyWidget = new Vue({
              .catch(function(err){
                console.log(err);
              });
-        axios.get(`/location/${this.latitude},${this.longitude}`)
+        axios.get(`/location/${lat},${lon}`)
              .then(function(response){
                currentlyWidget.location = response.data.results[2].formatted_address;
              });
