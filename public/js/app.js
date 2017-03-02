@@ -13,9 +13,6 @@ var currentlyWidget = new Vue({
     iconUrl: function(iconString){
       return `/images/${iconString}.png`;
     },
-    timeFilter: function(time){
-      return moment(time).format('MMMM Do YYYY, h:mm:ss a');
-    },
 
   },
   created: function(){
