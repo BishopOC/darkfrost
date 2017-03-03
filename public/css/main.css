@@ -51,6 +51,20 @@ div#currently header{
   justify-content: center;
   align-items: center;
   line-height: .01em;
+  margin-bottom: 5em;
+}
+div#currently header button{
+  margin-bottom: 4em;
+  background: rgba(255, 255, 255, 0.5);
+  border: solid 1px grey;
+  border-radius: 5px;
+
+}
+div#currently header input{
+  background: inherit;
+  border: solid 1px grey;
+  border-radius: 5px;
+  width: 5em;
 }
 
 div#currently footer{
@@ -93,7 +107,6 @@ div#dailyForecast {
   justify-content: center;
 
 }
-
 div img {
   height: 200px;
 }

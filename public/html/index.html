@@ -13,6 +13,9 @@
 
 <div id="currently">
   <header>
+    <input type="text" v-model='latitude' placeholder="Latitude:">
+    <input type="text" v-model='longitude' placeholder="Longitude:">
+    <button v-on:click='updateWeather' v-on:click='created'>Update</button>
     <h3>Temperature</h3>
     <h1>{{ apparentTemperature }} F</h1>
   </header>
@@ -21,9 +24,6 @@
     </div>
     <div id='center'>
       <h1>Current Weather</h1>
-      <input type="text" v-model='latitude' placeholder="Latitude:">
-      <input type="text" v-model='longitude' placeholder="Longitude:">
-      <button v-on:click='updateWeather'>Update Weather</button>
       <h2>{{ location }}</h2>
       <div><img :src="iconUrl(icon)" alt=""></div>
       <h2>{{ summary }}</h2>
@@ -48,6 +48,20 @@
   </footer>
 </div>
 
+<div id="hourly">
+  <header>
+    <div>{{ summary }}</div>
+    <img :src="getMainIcon()" alt="">
+  </header>
+  <main>
+    <ul>
+      <li v-for='hour in hours'>
+        <img :src="getHourlyIcon(hour.icon)" alt=""> - {{ hour.summary }} - {{ hour.apparentTemperature }} - {{ getDate(hour.time) }}
+      </li>
+    </ul>
+  </main>
+
+</div>
   <script src='js/app.js'></script>
 </body>
 </html>
