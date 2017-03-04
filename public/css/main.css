@@ -8,8 +8,10 @@ body {
   margin:0;
   padding:0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: stretch;
+
+  align-items: center;
   -webkit-animation: backgroundScroll 75s linear infinite;
 animation: backgroundScroll 75s linear infinite;
 font-family: inherit;
@@ -41,6 +43,7 @@ div#currently{
   padding: 20px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.5);
+  /*width: 50%;*/
 
 
 }
@@ -85,20 +88,40 @@ div#center {
 
 
 div#daily {
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 40px;
-  padding: 20px;
+  /*padding: 50px;*/
+
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.5);
+
+}
+
+div#daily ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  margin: ;
+  /*flex-wrap: wrap;*/
+
+}
+
+div#daily li {
+  width: 9em;
 
 }
 
 div#daily footer{
   width:250px;
   word-wrap: break-word;
+}
+
+div#daily img{
+  height: 100px;
 }
 
 div#dailyForecast {
@@ -111,4 +134,60 @@ div img {
   height: 200px;
 }
 
-div header
+div#hourly {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 40px;
+}
+
+div#hourly ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+div#hourly li{
+  width: 7em;
+}
+
+div#hourly img {
+  height: 4em;
+}
+div#minutely {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 40px;
+  /*line-height: 2em;*/
+}
+
+div#minutely ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  /*line-height: 2em;*/
+}
+
+div#minutely li{
+  width: 7em;
+  margin-top: 2em;
+}
+
+div#minutely img {
+  height: 4em;
+}
+
+div#minutely input{
+  width: 5em;
+}
+
+div#minutely button{
+  width: 5em;
+}
