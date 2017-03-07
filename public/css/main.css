@@ -10,7 +10,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   align-items: center;
   -webkit-animation: backgroundScroll 75s linear infinite;
 animation: backgroundScroll 75s linear infinite;
@@ -31,53 +30,80 @@ to {background-position: 175% 0;}
 body	{
 	background-position: 0px 0px;
 	background-repeat: repeat-x;
-
-
 }
 div#currently{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: 40px;
+  margin: 20px;
   padding: 20px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.5);
-  /*width: 50%;*/
-
+}
+div#currently p.currentFont {
+  font-family: 'Josefin Slab', serif;
+  font-size: 2em;
+}
+div#currently p#currentWeather{
+  font-weight: 600;
+  font-size: 2.5em;
 
 }
+div#currently p#currentLocation {
+  font-size: 1.5em;
+}
+div#currently p#currentTime {
+  font-size: 1.5em;
+}
+div#currently p#currentTemp {
+  font-size: 1.5em;
+}
+div#currently p#currentChance{
+  font-size: 1.5em;
+}
+div#currently p#currentHumidity{
+  font-size: 1.5em;
+}
+div#currently  span.currentFont{
+  font-size: 1.5em;
+}
+div#currently p#currentSummary{
+  font-weight: 600;
+  font-size: 2.5em;
 
+}
 div#currently header{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   line-height: .01em;
-  margin-bottom: 5em;
+
 }
-div#currently header button{
-  margin-bottom: 4em;
-  background: rgba(255, 255, 255, 0.5);
-  border: solid 1px grey;
+div#currently  button{
+  margin-bottom: 1em;
+  margin-top: .3em;
+  background: rgba(255, 255, 255, 1);
+  border: solid 1px black;
   border-radius: 5px;
 
 }
-div#currently header input{
-  background: inherit;
-  border: solid 1px grey;
+div#currently  input{
+  /*background: inherit;*/
+  border: solid 1px black;
   border-radius: 5px;
-  width: 5em;
+  width: 10em;
+  height: 2em;
+  text-align: center;
 }
-
 div#currently footer{
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-line-height: 2px;
-}
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 2px;
+  }
 div#center {
   display: flex;
   flex-direction: column;
@@ -85,22 +111,33 @@ div#center {
   justify-content: center;
   line-height: 2px;
 }
-
-
 div#daily {
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 40px;
+  margin: 20px;
   /*padding: 50px;*/
 
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.5);
 
 }
-
+div#daily input {
+  border: solid 1px black;
+  border-radius: 5px;
+  width: 10em;
+  height: 2em;
+  text-align: center;
+}
+div#daily button{
+  margin-bottom: 1em;
+  margin-top: .3em;
+  background: rgba(255, 255, 255, 1);
+  border: solid 1px black;
+  border-radius: 5px;
+}
 div#daily ul {
   list-style: none;
   display: flex;
@@ -109,85 +146,163 @@ div#daily ul {
   /*flex-wrap: wrap;*/
 
 }
-
 div#daily li {
   width: 9em;
 
 }
-
 div#daily footer{
   width:250px;
   word-wrap: break-word;
 }
-
 div#daily img{
   height: 100px;
 }
-
+div#daily div#divTitle{
+  margin-bottom: -1.5em;
+}
+div#daily p.dailyFont {
+  font-family: 'Josefin Slab', serif;
+  font-size: 1.1em;
+  font-weight: 900;
+}
+div#daily p#dailyTitle {
+  font-size: 2.5em;
+  font-weight: 900;
+}
+div#daily p#dailySummary {
+  font-weight: 900;
+  font-size: 1.7em;
+}
 div#dailyForecast {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: inherit;
 
 }
 div img {
   height: 200px;
 }
-
 div#hourly {
-  display: flex;
+  /*display: flex;*/
   flex-direction: column;
   justify-content: center;
   text-align: center;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.5);
-  margin: 40px;
+  margin: 20px;
+  width: 90%;
 }
-
 div#hourly ul{
   display: flex;
-  flex-wrap: wrap;
+  /*flex-wrap: wrap;*/
+  /*flex-direction: row;*/
+  /*display: inline;*/
+  /*justify-content: center;*/
+  align-items: baseline;
+  /*margin-left: 1em;*/
+  padding:0;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
   list-style: none;
-}
 
-div#hourly li{
-  width: 7em;
 }
+div#hourly input {
+  border: solid 1px black;
+  border-radius: 5px;
+  width: 10em;
+  height: 2em;
+  text-align: center;
+}
+div#hourly button{
+  margin-bottom: 1em;
+  margin-top: .3em;
+  background: rgba(255, 255, 255, 1);
+  border: solid 1px black;
+  border-radius: 5px;
+}
+div#hourly li#hourlylist{
+  width: 200px;
 
-div#hourly img {
-  height: 4em;
+  /*height:100px;*/
+  margin-left: 1em;
+  margin-right: 1em;
+}
+div#hourly header img {
+  height: 10em;
+}
+div#hourly main img {
+  height: 6em;
+}
+div#hourly p.hourlyFont {
+  font-family: 'Josefin Slab', serif;
+  font-size: 1.1em;
+  font-weight: 900;
+}
+div#hourly p#hourlyTitle{
+  font-size: 3em;
+  font-weight: 900;
+}
+div#hourly p#hourlySummary{
+  font-size: 1.5em;
+  font-weight: 900;
 }
 div#minutely {
-  display: flex;
+  /*display: flex;*/
   flex-direction: column;
   justify-content: center;
   text-align: center;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.5);
   margin: 40px;
-  /*line-height: 2em;*/
+  width: 90%;
 }
-
 div#minutely ul{
   display: flex;
-  flex-wrap: wrap;
+  /*flex-wrap: wrap;*/
+  /*flex-direction: row;*/
+  /*display: inline;*/
+  /*justify-content: center;*/
+  align-items: baseline;
+  /*margin-left: 1em;*/
+  padding:0;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
   list-style: none;
-  /*line-height: 2em;*/
 }
-
 div#minutely li{
-  width: 7em;
-  margin-top: 2em;
-}
+  width: 200px;
 
+  /*height:100px;*/
+  margin-left: 1em;
+  margin-right: 1em;
+}
 div#minutely img {
   height: 4em;
 }
-
 div#minutely input{
-  width: 5em;
+  border: solid 1px black;
+  border-radius: 5px;
+  width: 10em;
+  height: 2em;
+  text-align: center;
 }
-
 div#minutely button{
-  width: 5em;
+  margin-bottom: 1em;
+  margin-top: .3em;
+  background: rgba(255, 255, 255, 1);
+  border: solid 1px black;
+  border-radius: 5px;
+}
+div#minutely p#mTitle {
+  font-family: 'Josefin Slab', serif;
+  font-size: 2.5em;
+  font-weight: 900;
+}
+div#minutely p.mFont {
+  font-family: 'Josefin Slab', serif;
+  font-size: 1.1em;
+  font-weight: 900;
 }

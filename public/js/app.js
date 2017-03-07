@@ -1,3 +1,4 @@
+// jshint -W119
 
 var currentlyWidget = new Vue({
   el: '#currently',
@@ -8,37 +9,38 @@ var currentlyWidget = new Vue({
     apparentTemperature: 0,
     precipProbability : 0,
     humidity: 0,
-    location:' ',
-    latitude: '',
-    longitude: '',
+    location:'Gainesville, 32605',
+    local: '',
   },
   methods: {
     iconUrl: function(iconString){
       return `/images/${iconString}.png`;
     },
-    getWeather: function(lat, lon){
-      var url = `/weather/${lat},${lon}`;
+    getWeather: function(local){
+      var url = `/location/${local}`;
         axios.get(url)
              .then(function(response){
-               currentlyWidget.time = response.data.currently.time;
-               currentlyWidget.summary = response.data.currently.summary;
-               currentlyWidget.icon = response.data.currently.icon;
-               currentlyWidget.apparentTemperature = response.data.currently.apparentTemperature;
-               currentlyWidget.precipProbability = response.data.currently.precipProbability;
-               currentlyWidget.humidity = response.data.currently.humidity;
-              //  console.log(response.data);
+               var axiosLon = response.data.results[0].geometry.location.lng;
+               var axiosLat = response.data.results[0].geometry.location.lat;
+               currentlyWidget.location = response.data.results[0].formatted_address;
+              return axios.get(`/weather/${axiosLat},${axiosLon}`)
+              .then(function(response){
+                currentlyWidget.time = response.data.currently.time;
+                currentlyWidget.summary = response.data.currently.summary;
+                currentlyWidget.icon = response.data.currently.icon;
+                currentlyWidget.apparentTemperature = response.data.currently.apparentTemperature;
+                currentlyWidget.precipProbability = response.data.currently.precipProbability;
+                currentlyWidget.humidity = response.data.currently.humidity;
+                // console.log(axiosLon);
+                   });
              })
              .catch(function(err){
                console.log(err);
              });
-        axios.get(`/location/${lat},${lon}`)
-             .then(function(response){
-               currentlyWidget.location = response.data.results[2].formatted_address;
-              //  console.log(response.data);
-             });
+
     },
     updateWeather: function(){
-      this.getWeather(this.latitude, this.longitude);
+      this.getWeather(this.local);
     },
     currentTime: function(seconds){
       var date = new Date(seconds * 1000);
@@ -62,7 +64,7 @@ var currentlyWidget = new Vue({
   },
 
   created: function(){
-  this.getWeather(29.6, -82.3);
+  this.getWeather('Gainesville, 32605');
 
   },
 
@@ -76,7 +78,8 @@ var dailyWidget = new Vue({
     summary: 'blahblah ',
     latitude: '',
     longitude:'',
-    days: []
+    days: [],
+    local: '',
   },
   methods: {
     iconUrl: function(iconString){
@@ -98,27 +101,32 @@ var dailyWidget = new Vue({
       return `${dayName}`;
     },
 
-    getDailyWeather: function(lat, lon){
-      var url = `/weather/${lat},${lon}`;
-      axios.get(url)
-           .then(function(response){
-             var dailyData = response.data.daily;
-             this.icon = dailyData.icon;
-             this.summary = dailyData.summary;
-             this.days = dailyData.data;
+    getDailyWeather: function(local){
+      var url = `/location/${local}`;
+        axios.get(url)
+             .then(function(response){
+               var axiosLon = response.data.results[0].geometry.location.lng;
+               var axiosLat = response.data.results[0].geometry.location.lat;
+              return axios.get(`/weather/${axiosLat},${axiosLon}`)
+              .then(function(response){
+                dailyWidget.time = response.data.daily.time;
+                dailyWidget.summary = response.data.daily.summary;
+                dailyWidget.icon = response.data.daily.icon;
+                dailyWidget.days = response.data.daily.data;
 
-          }.bind(this))
+                   });
+             })
            .catch(function(err){
              console.log(err);
            });
     },
     updateWeather: function(){
-      this.getDailyWeather(this.latitude, this.longitude);
+      this.getDailyWeather(dailyWidget.local);
     },
   },
 
   created: function(){
-    this.getDailyWeather(29, -80);
+    this.getDailyWeather('Gainesville, Fl');
   }
 });
 
@@ -129,7 +137,8 @@ var hourlyWidget = new Vue({
     icon: 'clear-night',
     latitude: '',
     longitude:'',
-    hours: []
+    hours: [],
+    local: '',
   },
   methods: {
     getHourlyIcon: function(iconString){
@@ -144,27 +153,30 @@ var hourlyWidget = new Vue({
       var minutes = date.getMinutes();
       return `${month + 1}/${day} ${hour}:${minutes < 9 ? '0' + minutes : minutes}`;
     },
-    getHourlyWeather: function(lat, lon){
-      var url = `/weather/${lat},${lon}`;
-      axios.get(url)
-           .then(function(response){
-             var hourlyData = response.data.hourly;
-            //  console.log(hourlyData);
-             this.summary = hourlyData.summary;
-             this.icon = hourlyData.icon;
-             this.hours = hourlyData.data;
-
-           }.bind(this))
+    getHourlyWeather: function(local){
+      var url = `/location/${local}`;
+        axios.get(url)
+             .then(function(response){
+               var axiosLon = response.data.results[0].geometry.location.lng;
+               var axiosLat = response.data.results[0].geometry.location.lat;
+              return axios.get(`/weather/${axiosLat},${axiosLon}`)
+              .then(function(response){
+                hourlyWidget.time = response.data.hourly.time;
+                hourlyWidget.summary = response.data.hourly.summary;
+                hourlyWidget.icon = response.data.hourly.icon;
+                hourlyWidget.hours = response.data.hourly.data;
+                   });
+             })
            .catch(function(err){
              console.log(err);
            });
     },
     updateWeather: function(){
-      this.getHourlyWeather(this.latitude, this.longitude);
+      this.getHourlyWeather(hourlyWidget.local);
     },
   },
   created: function (){
-    this.getHourlyWeather(29.1,-80.1);
+    this.getHourlyWeather('Gainesville, Fl');
   }
 });
 
@@ -173,24 +185,27 @@ var minutelyWidget = new Vue({
   data: {
     icon: 'icon',
     precipProbability: 0,
-    latitude: '',
-    longitude:'',
-    minutes: []
+    minutes: [],
+    local: '',
   },
   methods: {
     urlIcon: function(icon){
       return `/images/${icon}.png`;
     },
-    getMinutelyWeather: function (lat, lon){
-      var url = `/weather/${lat},${lon}`;
-      axios.get(url)
-           .then(function(response){
-             var minutelyData = response.data.minutely;
-             this.icon = minutelyData.icon;
-             this.precipProbability = minutelyData.precipProbability;
-             this.minutes = minutelyData.data;
-             console.log(response.data);
-           }.bind(this))
+    getMinutelyWeather: function(local){
+      var url = `/location/${local}`;
+        axios.get(url)
+             .then(function(response){
+               var axiosLon = response.data.results[0].geometry.location.lng;
+               var axiosLat = response.data.results[0].geometry.location.lat;
+              return axios.get(`/weather/${axiosLat},${axiosLon}`)
+              .then(function(response){
+                minutelyWidget.time = response.data.minutely.time;
+                minutelyWidget.summary = response.data.minutely.summary;
+                minutelyWidget.icon = response.data.minutely.icon;
+                minutelyWidget.minutes = response.data.minutely.data;
+                   });
+             })
            .catch(function(err){
              console.log(err);
            });
@@ -202,12 +217,12 @@ var minutelyWidget = new Vue({
       return `${hour}:${minutes < 9 ? '0' + minutes: minutes}`;
     },
     updateWeather: function(){
-      this.getMinutelyWeather(this.latitude, this.longitude);
+      this.getMinutelyWeather(this.local);
     },
   },
 
   created: function(){
-    this.getMinutelyWeather(29, -82);
+    this.getMinutelyWeather('Gainesville, Fl');
   }
 
 });

@@ -8,98 +8,97 @@
   <script src="https://unpkg.com/vue"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Josefin+Slab">
 </head>
-<body>
-<div id="top">
-  <div id="currently">
-    <header>
-      <h3>Temperature</h3>
-      <h1>{{ apparentTemperature }} F</h1>
-    </header>
-    <main>
-      <div>
-      </div>
-      <input type="text" v-model='latitude' placeholder="Latitude:">
-      <input type="text" v-model='longitude' placeholder="Longitude:">
-      <button v-on:click='updateWeather' v-on:click='created'>Update</button>
-      <div id='center'>
-        <h1>Current Weather</h1>
-        <h2>{{ location }}</h2>
-        <div><img :src="iconUrl(icon)" alt=""></div>
-        <h2>{{ summary }}</h2>
-        <h3>{{ currentTime(time) }}</h3>
-      </div>
-      <div>
-      </div>
-    </main>
-    <footer>
-      <h3>Chance of Rain: {{ precipProbability}}</h3>
-      <h3>% Humidity: {{ humidity }}</h3>
-    </footer>
-  </div>
-</div>
 
-<div id="mid">
-  <div id="daily">
-
-    <div id="dailyForecast">
-      <input type="text" v-model='latitude' placeholder="Latitude:">
-      <input type="text" v-model='longitude' placeholder="Longitude:">
-      <button v-on:click='updateWeather' v-on:click='created'>Update</button>
+<body id='hide'>
+  <div id="top">
+    <div id="currently">
+      <header>
+        <p class='currentFont'id='currentTemp'>Temperature</p>
+        <p class='currentFont'id='currentApparent'>{{ apparentTemperature }} F</p>
+      </header>
+      <main>
+        <div id='center'>
+          <input type="text" v-model='local' placeholder="Type Location Here">
+          <button v-on:click='updateWeather' v-on:click='created'>Update</button>
+          <p class='currentFont'id='currentWeather'>Current Weather</p>
+          <p class='currentFont'id='currentLocation'>{{ location }}</p>
+          <div><img :src="iconUrl(icon)" alt=""></div>
+          <p class='currentFont'id='currentSummary'>{{ summary }}</p>
+          <p class='currentFont'id='currentTime'>{{ currentTime(time) }}</p>
+        </div>
+        <div>
+        </div>
+      </main>
+      <footer>
+        <p class='currentFont'id='currentChance'>Chance %: <span class='currentFont'>{{ precipProbability}}</span></p>
+        <p class='currentFont'id='currentHumidity'>Humidity: <span class='currentFont'>{{ humidity }}</span></p>
+      </footer>
     </div>
-    <h1>Daily Forecast</h1>
-    <div>
-      <div>{{ summary }}</div>
-    <ul id='dailyList'>
-      <li v-for='day in days'>
-        <div>{{ dailyTime(day.time) }}</div>
-        <img :src="iconUrl(day.icon)" alt="">
-        <div>{{ day.summary }}</div>
-        <br>
-      </li>
-    </ul>
+  </div>
+
+  <div id="mid">
+    <div id="daily">
+      <br>
+      <input type="text" v-model='local' placeholder="Type Location Here">
+      <button v-on:click='updateWeather' v-on:click='created'>Update</button>
+    <div id='divTitle'>
+      <p id='dailyTitle' class='dailyFont'>Daily Forecast</p>
+    </div>
+      <div>
+        <div><p id='dailySummary' class='dailyFont'>{{ summary }}</p></div>
+        <ul id='dailyList'>
+          <li v-for='day in days'>
+            <div><p class='dailyFont'>{{ dailyTime(day.time) }}</p></div>
+            <img :src="iconUrl(day.icon)" alt="">
+            <div><p class='dailyFont'>{{ day.summary }}</p></div>
+            <br>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
 
 
-  <div id="hourly">
-    <header>
-      <input type="text" v-model='latitude' placeholder="Latitude:">
-      <input type="text" v-model='longitude' placeholder="Longitude:">
-      <button v-on:click='updateWeather' v-on:click='created'>Update</button>
-      <h2>Hourly</h2>
-      <div>{{ summary }}</div>
-      <img :src="getHourlyIcon(icon)" alt="">
-    </header>
-    <main>
-      <ul>
-        <li v-for='hour in hours'>
-          <img :src="getHourlyIcon(hour.icon)" alt="">
-          <div>{{ hour.summary }}</div>
-          <div>Temp: {{ hour.apparentTemperature }}F</div>
-          <div>{{ getDate(hour.time) }}</div>
-        </li>
-      </ul>
-    </main>
-  </div>
-
-
-  <div id="minutely">
-    <header>
-      <input type="text" v-model='latitude' placeholder="Latitude:">
-      <input type="text" v-model='longitude' placeholder="Longitude:">
-      <button v-on:click='updateWeather' v-on:click='created'>Update</button>
-      <h2>Minutely Weather</h2>
-    </header>
+<div id="hourly">
+  <header>
+    <br>
+    <input type="text" v-model='local' placeholder="Type Location Here">
+    <div><button v-on:click='updateWeather' v-on:click='created'>Update</button></div>
+    <p id="hourlyTitle" class='hourlyFont'>Hourly</p>
+    <div><p id='hourlySummary' class='hourlyFont'>{{ summary }}</p></div>
+    <img :src="getHourlyIcon(icon)" alt="">
+  </header>
+  <main>
     <ul>
-      <li v-for='minute in minutes'>
-        <div> Precipitation Probability: {{ minute.precipProbability }}%       at </div>
-        <div>{{ getTime(minute.time) }}</div>
+      <li id='hourlylist' v-for='hour in hours'>
+        <img :src="getHourlyIcon(hour.icon)" alt="">
+        <div><p class='hourlyFont'>{{ hour.summary }}</p></div>
+        <div><p class='hourlyFont'>{{ hour.apparentTemperature }} F</p></div>
+        <div><p class='hourlyFont'>{{ getDate(hour.time) }}</p></div>
       </li>
     </ul>
-  </div>
+  </main>
+</div>
 
-  <script src='js/app.js'></script>
+
+<div id="minutely">
+  <header>
+    <br>
+    <input type="text" v-model='local' placeholder="Type Location Here">
+    <div><button v-on:click='updateWeather' v-on:click='created'>Update</button></div>
+    <p id='mTitle'>Minutely Weather</p>
+  </header>
+  <ul>
+    <li v-for='minute in minutes'>
+      <div><p class='mFont'> Precipitation Probability: {{ minute.precipProbability }}% at <p></div>
+      <div><p class='mFont'>{{ getTime(minute.time) }}<p></div>
+    </li>
+  </ul>
+</div>
+
+<script src='js/app.js'></script>
 </body>
 </html>
