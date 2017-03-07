@@ -111,6 +111,9 @@ div#center {
   justify-content: center;
   line-height: 2px;
 }
+div#mid{
+  width: 93.1%;
+}
 div#daily {
   text-align: center;
   display: flex;
@@ -118,10 +121,9 @@ div#daily {
   justify-content: center;
   align-items: center;
   margin: 20px;
-  /*padding: 50px;*/
-
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.5);
+
 
 }
 div#daily input {
@@ -143,6 +145,7 @@ div#daily ul {
   display: flex;
   flex-direction: row;
   margin: ;
+
   /*flex-wrap: wrap;*/
 
 }
@@ -183,6 +186,7 @@ div#dailyForecast {
 div img {
   height: 200px;
 }
+
 div#hourly {
   /*display: flex;*/
   flex-direction: column;
@@ -191,18 +195,14 @@ div#hourly {
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.5);
   margin: 20px;
+  margin-bottom:0px;
   width: 90%;
 }
 div#hourly ul{
   display: flex;
-  /*flex-wrap: wrap;*/
-  /*flex-direction: row;*/
-  /*display: inline;*/
-  /*justify-content: center;*/
   align-items: baseline;
-  /*margin-left: 1em;*/
   padding:0;
-  width: 100%;
+  width: inherit;
   overflow-x: scroll;
   overflow-y: hidden;
   list-style: none;
@@ -305,4 +305,18 @@ div#minutely p.mFont {
   font-family: 'Josefin Slab', serif;
   font-size: 1.1em;
   font-weight: 900;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
+}
+
+div#hourly button#hidebutton {
+
+}
+div#currently img {
+  height: 9em;
 }

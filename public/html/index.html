@@ -40,63 +40,76 @@
 
   <div id="mid">
     <div id="daily">
-      <br>
-      <input type="text" v-model='local' placeholder="Type Location Here">
-      <button v-on:click='updateWeather' v-on:click='created'>Update</button>
-    <div id='divTitle'>
-      <p id='dailyTitle' class='dailyFont'>Daily Forecast</p>
-    </div>
-      <div>
-        <div><p id='dailySummary' class='dailyFont'>{{ summary }}</p></div>
-        <ul id='dailyList'>
-          <li v-for='day in days'>
-            <div><p class='dailyFont'>{{ dailyTime(day.time) }}</p></div>
-            <img :src="iconUrl(day.icon)" alt="">
-            <div><p class='dailyFont'>{{ day.summary }}</p></div>
-            <br>
-          </li>
-        </ul>
-      </div>
+        <button v-on:click="show = !show">DailyWeather</button>
+        <transition name="fade">
+          <div v-if='show'>
+          <input type="text" v-model='local' placeholder="Type Location Here">
+        <div id='divTitle'>
+          <button v-on:click='updateWeather' v-on:click='created'>Update</button>
+          <p id='dailyTitle' class='dailyFont'>Daily Forecast</p>
+        </div>
+          <div>
+            <div><p id='dailySummary' class='dailyFont'>{{ summary }}</p></div>
+            <ul id='dailyList'>
+              <li v-for='day in days'>
+                <div><p class='dailyFont'>{{ dailyTime(day.time) }}</p></div>
+                <img :src="iconUrl(day.icon)" alt="">
+                <div><p class='dailyFont'>{{ day.summary }}</p></div>
+                <br>
+              </li>
+            </ul>
+          </div>
+  </div>
+        </transition>
     </div>
   </div>
-</div>
+
 
 
 <div id="hourly">
-  <header>
-    <br>
-    <input type="text" v-model='local' placeholder="Type Location Here">
-    <div><button v-on:click='updateWeather' v-on:click='created'>Update</button></div>
-    <p id="hourlyTitle" class='hourlyFont'>Hourly</p>
-    <div><p id='hourlySummary' class='hourlyFont'>{{ summary }}</p></div>
-    <img :src="getHourlyIcon(icon)" alt="">
-  </header>
-  <main>
-    <ul>
-      <li id='hourlylist' v-for='hour in hours'>
-        <img :src="getHourlyIcon(hour.icon)" alt="">
-        <div><p class='hourlyFont'>{{ hour.summary }}</p></div>
-        <div><p class='hourlyFont'>{{ hour.apparentTemperature }} F</p></div>
-        <div><p class='hourlyFont'>{{ getDate(hour.time) }}</p></div>
-      </li>
-    </ul>
-  </main>
+  <button id="hidebutton" v-on:click="show = !show">Hourly Weather</button>
+  <transition name="fade">
+    <div v-if="show">
+      <header>
+        <input type="text" v-model='local' placeholder="Type Location Here">
+        <div><button v-on:click='updateWeather' v-on:click='created'>Update</button></div>
+        <p id="hourlyTitle" class='hourlyFont'>Hourly</p>
+        <div><p id='hourlySummary' class='hourlyFont'>{{ summary }}</p></div>
+        <img :src="getHourlyIcon(icon)" alt="">
+      </header>
+      <main>
+        <ul>
+          <li id='hourlylist' v-for='hour in hours'>
+            <img :src="getHourlyIcon(hour.icon)" alt="">
+            <div><p class='hourlyFont'>{{ hour.summary }}</p></div>
+            <div><p class='hourlyFont'>{{ hour.apparentTemperature }} F</p></div>
+            <div><p class='hourlyFont'>{{ getDate(hour.time) }}</p></div>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </transition>
 </div>
 
 
 <div id="minutely">
-  <header>
-    <br>
-    <input type="text" v-model='local' placeholder="Type Location Here">
-    <div><button v-on:click='updateWeather' v-on:click='created'>Update</button></div>
-    <p id='mTitle'>Minutely Weather</p>
-  </header>
-  <ul>
-    <li v-for='minute in minutes'>
-      <div><p class='mFont'> Precipitation Probability: {{ minute.precipProbability }}% at <p></div>
-      <div><p class='mFont'>{{ getTime(minute.time) }}<p></div>
-    </li>
-  </ul>
+  <button id="hidebutton" v-on:click="show = !show">Minutely Weather</button>
+  <transition name='fade'>
+    <div v-if='show'>
+      <header>
+        <br>
+        <input type="text" v-model='local' placeholder="Type Location Here">
+        <div><button v-on:click='updateWeather' v-on:click='created'>Update</button></div>
+        <p id='mTitle'>Minutely Weather</p>
+      </header>
+      <ul>
+        <li v-for='minute in minutes'>
+          <div><p class='mFont'> Precipitation Probability: {{ minute.precipProbability }}% at <p></div>
+          <div><p class='mFont'>{{ getTime(minute.time) }}<p></div>
+        </li>
+      </ul>
+    </div>
+  </transition>
 </div>
 
 <script src='js/app.js'></script>

@@ -80,6 +80,7 @@ var dailyWidget = new Vue({
     longitude:'',
     days: [],
     local: '',
+    show: false,
   },
   methods: {
     iconUrl: function(iconString){
@@ -139,6 +140,7 @@ var hourlyWidget = new Vue({
     longitude:'',
     hours: [],
     local: '',
+    show:false,
   },
   methods: {
     getHourlyIcon: function(iconString){
@@ -187,6 +189,7 @@ var minutelyWidget = new Vue({
     precipProbability: 0,
     minutes: [],
     local: '',
+    show: false,
   },
   methods: {
     urlIcon: function(icon){
