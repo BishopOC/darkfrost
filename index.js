@@ -1,8 +1,8 @@
 var express = require('express');
 var server =  express();
 var port = process.env.PORT || 8080;
-var apiKey = require('./secrets').darkskyAPIKey;
-var googleKey = require('./secrets').googleAPIKey;
+var apiKey = process.env.DARK_API || require('./secrets').darkskyAPIKey;
+var googleKey = process.env.GOOG_API || require('./secrets').googleAPIKey;
 var axios = require('axios');
 
 server.use(express.static(__dirname + '/public'));
