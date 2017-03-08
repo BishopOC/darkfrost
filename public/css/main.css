@@ -335,23 +335,21 @@ outline: none;
 div#minutely button:hover{
 background-color: #424242 !important;
 color: white;
+}
 div#minutely p#mTitle {
   font-family: 'Josefin Slab', serif;
   font-size: 2.5em;
   font-weight: 900;
 }
 div#minutely p.mFont {
-  font-family: 'Josefin Slab', serif;
-  font-size: 1.1em;
-  font-weight: 900;
+  font-family: 'Josefin Slab', serif !important;
+  font-size: 1.1em !important;
+  font-weight: 900 !important;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
-  opacity: 0
-}
+
+
+
 
 div#currently img {
   height: 9em;
@@ -380,4 +378,11 @@ body div button.hide:hover {
 
 input.inputField:focus {
   outline:none;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
 }
