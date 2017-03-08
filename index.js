@@ -19,7 +19,7 @@ server.get('/weather/:lat,:lon', function(request,response){
          response.send(results.data);
        })
        .catch(function(err){
-         response.send(err);
+         console.log(err);
        });
      });
 

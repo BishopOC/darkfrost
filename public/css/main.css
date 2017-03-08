@@ -84,10 +84,18 @@ div#currently header{
 div#currently  button{
   margin-bottom: 1em;
   margin-top: .3em;
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0);
   border: solid 1px black;
   border-radius: 5px;
-
+  -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+div#currently  button:focus{
+outline: none;
+}
+div#currently  button:hover{
+background-color: #424242 !important;
+color: white;
 }
 div#currently  input{
   /*background: inherit;*/
@@ -96,6 +104,7 @@ div#currently  input{
   width: 10em;
   height: 2em;
   text-align: center;
+  background-color: rgba(255, 255, 255, 0) !important;
 }
 div#currently footer{
   display: flex;
@@ -112,7 +121,7 @@ div#center {
   line-height: 2px;
 }
 div#mid{
-  width: 93.1%;
+  width: 100%;
 }
 div#daily {
   text-align: center;
@@ -132,13 +141,23 @@ div#daily input {
   width: 10em;
   height: 2em;
   text-align: center;
+  background-color: rgba(255, 255, 255, 0) !important;
 }
 div#daily button{
   margin-bottom: 1em;
   margin-top: .3em;
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0);
   border: solid 1px black;
   border-radius: 5px;
+  -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+div#daily button:focus{
+outline: none;
+}
+div#daily button:hover{
+background-color: #424242 !important;
+color: white;
 }
 div#daily ul {
   list-style: none;
@@ -196,7 +215,8 @@ div#hourly {
   background: rgba(255, 255, 255, 0.5);
   margin: 20px;
   margin-bottom:0px;
-  width: 90%;
+  margin: 0px, 20px, 0px, 20px;
+  width: 97%;
 }
 div#hourly ul{
   display: flex;
@@ -214,13 +234,23 @@ div#hourly input {
   width: 10em;
   height: 2em;
   text-align: center;
+  background-color: rgba(255, 255, 255, 0) !important;
 }
 div#hourly button{
-  margin-bottom: 1em;
+
   margin-top: .3em;
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0);
   border: solid 1px black;
   border-radius: 5px;
+  -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+div#hourly button:focus{
+outline: none;
+}
+div#hourly button:hover{
+background-color: #424242 !important;
+color: white;
 }
 div#hourly li#hourlylist{
   width: 200px;
@@ -256,7 +286,7 @@ div#minutely {
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.5);
   margin: 40px;
-  width: 90%;
+  width: 97%;
 }
 div#minutely ul{
   display: flex;
@@ -288,14 +318,23 @@ div#minutely input{
   width: 10em;
   height: 2em;
   text-align: center;
+  background-color: rgba(255, 255, 255, 0) !important;
 }
 div#minutely button{
   margin-bottom: 1em;
   margin-top: .3em;
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0);
   border: solid 1px black;
   border-radius: 5px;
+  -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
 }
+div#minutely button:focus{
+outline: none;
+}
+div#minutely button:hover{
+background-color: #424242 !important;
+color: white;
 div#minutely p#mTitle {
   font-family: 'Josefin Slab', serif;
   font-size: 2.5em;
@@ -314,9 +353,31 @@ div#minutely p.mFont {
   opacity: 0
 }
 
-div#hourly button#hidebutton {
-
-}
 div#currently img {
   height: 9em;
+}
+
+body div button.hide {
+  background-color: rgba(255, 255, 255, 0) !important;
+  color: black;
+  width: 10em;
+  height: 2em;
+  -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+body div button.hide:focus {
+  outline: none;
+}
+body div button.hide:hover {
+  background-color: #424242 !important;
+  color: white;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #424242;
+}
+
+input.inputField:focus {
+  outline:none;
 }

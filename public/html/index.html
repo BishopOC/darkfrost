@@ -20,7 +20,7 @@
       </header>
       <main>
         <div id='center'>
-          <input type="text" v-model='local' placeholder="Type Location Here">
+          <input class ='inputField' type="text" v-model='local' placeholder="Type Location Here">
           <button v-on:click='updateWeather' v-on:click='created'>Update</button>
           <p class='currentFont'id='currentWeather'>Current Weather</p>
           <p class='currentFont'id='currentLocation'>{{ location }}</p>
@@ -40,10 +40,10 @@
 
   <div id="mid">
     <div id="daily">
-        <button v-on:click="show = !show">DailyWeather</button>
         <transition name="fade">
           <div v-if='show'>
-          <input type="text" v-model='local' placeholder="Type Location Here">
+            <br>
+          <input class ='inputField' type="text" v-model='local' placeholder="Type Location Here">
         <div id='divTitle'>
           <button v-on:click='updateWeather' v-on:click='created'>Update</button>
           <p id='dailyTitle' class='dailyFont'>Daily Forecast</p>
@@ -61,17 +61,18 @@
           </div>
   </div>
         </transition>
+        <button class="hide"  v-on:click="show = !show">DailyWeather</button>
     </div>
   </div>
 
 
 
 <div id="hourly">
-  <button id="hidebutton" v-on:click="show = !show">Hourly Weather</button>
   <transition name="fade">
     <div v-if="show">
       <header>
-        <input type="text" v-model='local' placeholder="Type Location Here">
+        <br>
+        <input class ='inputField' type="text" v-model='local' placeholder="Type Location Here">
         <div><button v-on:click='updateWeather' v-on:click='created'>Update</button></div>
         <p id="hourlyTitle" class='hourlyFont'>Hourly</p>
         <div><p id='hourlySummary' class='hourlyFont'>{{ summary }}</p></div>
@@ -89,16 +90,16 @@
       </main>
     </div>
   </transition>
+  <button class="hide" id="hidebutton" v-on:click="show = !show">Hourly Weather</button>
 </div>
 
 
 <div id="minutely">
-  <button id="hidebutton" v-on:click="show = !show">Minutely Weather</button>
   <transition name='fade'>
     <div v-if='show'>
       <header>
         <br>
-        <input type="text" v-model='local' placeholder="Type Location Here">
+        <input class='inputField' type="text" v-model='local' placeholder="Type Location Here">
         <div><button v-on:click='updateWeather' v-on:click='created'>Update</button></div>
         <p id='mTitle'>Minutely Weather</p>
       </header>
@@ -110,6 +111,7 @@
       </ul>
     </div>
   </transition>
+  <button class="hide" id="hidebutton" v-on:click="show = !show">Minutely Weather</button>
 </div>
 
 <script src='js/app.js'></script>
