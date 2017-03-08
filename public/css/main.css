@@ -177,7 +177,7 @@ div#daily footer{
   word-wrap: break-word;
 }
 div#daily img{
-  height: 100px;
+  height: 5em;
 }
 div#daily div#divTitle{
   margin-bottom: -1.5em;
@@ -203,7 +203,7 @@ div#dailyForecast {
 
 }
 div img {
-  height: 200px;
+  height: 9em;
 }
 
 div#hourly {
